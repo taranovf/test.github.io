@@ -1,0 +1,104 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>abobus</title>
+<style>
+	@font-face {
+    font-family: Fifaks; 
+    src: url("fonts/Fifaks10Dev1.woff2") format("woff2"),
+    url("fonts/Fifaks10Dev1.woff") format("woff"),
+    url("fonts/Fifaks10Dev1.ttf") format("ttf"),
+    url("fonts/Fifaks10Dev1.dfont") format("dfont"),
+    url("fonts/Fifaks10Dev1.svg") format("svg"),
+    url("fonts/Fifaks10Dev1.eot") format("eot");
+   }
+p {
+    font-family: Fifaks;
+   }
+font {
+    font-family: Fifaks;
+   }
+</style>
+</head>
+<body bgcolor="#383636">
+	<header>
+		<p align="center"><font size="30" color="#ffffff">HTML теги с нуля</font></p>
+		<hr noshade size="3px" color="white">
+	</header>
+<p align="left"><font size="10" color="white">Основные (простые) теги, которые вам нужно знать: </font></p>
+
+<p align="left"><font size="5" color="#ffbf00">Минутку внимания, если у вас на устройстве включен "Режим затемнения" или "Ночной режим", то для более лучшей читаемости текста рекомендуем отключить его, потому что изза этого режима цвета сайта отображаются неправильно! Приятного чтения!</font></p>
+
+<p align="left"><font size="5" color="#ffbf00">1.<font size="5" color="white"> &lta&gt - тег для встраивания ссылок, закрывается вторым тегом &lt/a&gt, пример использования:</font></font></p>
+<p align="left"><font size="5" color="white">&lta href="<i>ссылка на сайт</i>"&gt<i> Текст в который будет встроенна ссылка </i> &lt/a&gt</font></p>
+
+<p align="left"><font size="5" color="#ffbf00">2.<font size="5" color="white"> &ltp&gt - тег который создает текст с абзаца, закрывается вторым тегом &lt/p&gt, пример использования:</font></font></p>
+<p align="left"><font size="5" color="white">&ltp&gt<i> текст </i>&lt/p&gt</font></p>
+
+<p align="left"><font size="5" color="#ffbf00">3.
+<font size="5" color="white"> &lth1&gt - тег который создает заголовок 1 уровня (самый большой), 
+всего таких тегов 6 &lth1&gt, &lth2&gt, &lth3&gt, &lth4&gt, &lth5&gt, &lth6&gt (чем выше значение - тем меньшего размера будет текст заголовка), 
+закрывается вторым тегом &lt/h1&gt, пример использования:</font></font></p>
+<p align="left"><font size="5" color="white">&lth1&gt<i> текст </i>&lt/h1&gt</font></p>
+
+<p align="left"><font size="5" color="#ffbf00">4.
+<font size="5" color="white"> &lti&gt - тег который делает ваш текст курсивным, работает только с тегами, которые создают текст (&ltp&gt например),
+закрывается вторым тегом, пример использования:</font></font></p>
+<p align="left"><font size="5" color="white">&ltp&gt&lti&gt <i> текст </i> &lt/i&gt&lt/p&gt</font></p>
+
+<p align="left"><font size="5" color="#ffbf00">5.
+<font size="5" color="white"> &ltb&gt - тег который делает ваш текст жирным, работает только с тегами, которые создают текст (&ltp&gt например; тег &ltb&gt ничем не отличается от того же &lti&gt),
+закрывается вторым тегом, пример использования:</font></font></p>
+<p align="left"><font size="5" color="white">&ltp&gt&ltb&gt <i> текст </i> &lt/b&gt&lt/p&gt</font></p>
+
+<p align="left"><font size="5" color="#ffbf00">6.
+<font size="5" color="white"> &ltu&gt - тег который делает ваш текст подчеркнутым, работает только с тегами, которые создают текст (&ltp&gt например; 
+тег &ltu&gt ничем не отличается от вышеперчисленых: &ltb&gt, &lti&gt), закрывается вторым тегом, пример использования:</font></font></p>
+<p align="left"><font size="5" color="white">&ltp&gt&ltu&gt <i> текст</i> &lt/u&gt&lt/p&gt</font></p>
+
+<hr noshade size="3px" color="white">
+<p align="left"><font size="10" color="white">Теги, которые не закрываются вторым тегом: </font></p>
+
+<p align="left"><font size="5" color="#48ff00">1.
+<font size="5" color="white"> &lthr&gt - тег который создает горизонтальную линию, НЕ закрывается вторым тегом, пример использования:</font></font></p>
+<p align="left"><font size="5" color="white">&lthr&gt</font></p>
+
+<p align="left"><font size="5" color="#48ff00">2.
+<font size="5" color="white"> &ltimg&gt - тег который встраивает картинку на вашу страницу, НЕ закрывается вторым тегом, пример использования:</font></font></p>
+<p align="left"><font size="5" color="white">&ltimg src="<i>ссылка на картинку с компьютера (место где она лежит на диске)</i>"&gt</font></p>
+
+<p align="left"><font size="5" color="#48ff00">3.
+<font size="5" color="white"> &ltbr&gt или &lt/br&gt - тег который создаёт абзац (без текста, просто пропуск), НЕ закрывается вторым тегом, пример использования:</font></font></p>
+<p align="left"><font size="5" color="white">&ltbr&gt или &lt/br&gt</font></p>
+
+<hr noshade size="3px" color="white">
+<p align="left"><font size="10" color="white">Атрибуты, что это такое, где применять, как выглядят и т.д: </font></p>
+
+<p align="left"><font size="5" color="white"> Начнём с того, что Атрибуты это не отдельные теги и их нельзя писать просто самих по себе, они пишутся "внутрь" тега, также атрибуты не закрываются и пишутся в "открывающемся теге" (т.е внутрь тега &ltp&gt, а не &lt/p&gt например) 
+<font color="#007bff">сейчас вы сможете увидеть базовые атрибуты для html тегов</font></font></font></p>
+
+<p align="left"><font size="5" color="#007bff">1.
+<font size="5" color="white"> <u>href</u> - базовый атрибут для тега &lta&gt в который нужно написать ссылку на сайт (если вы забыли про тег &lta&gt перечитайте еще раз у нас на сайте) пример:</font></font></p>
+<p align="left"><font size="5" color="white">&lta href="<i>ссылка на сайт</i>"&gt<i> Текст в который будет встроенна ссылка </i> &lt/a&gt</font></p>
+<p align="left"><font size="5" color="white">Как мы уже ранее писали Атрибут <u>href</u> встроен в первый или "открывающий" тег &lta&gt</font></p>
+
+<p align="left"><font size="5" color="#007bff">2.
+<font size="5" color="white"> <u>src</u> - базовый атрибут для тега &ltimg&gt в который нужно написать ссылку на картинку (эта картинка должна быть у вас скачана, после чего вы должны указать на неё путь через ваш диск, почему она должна быть скачана? - Атрибут <u>src</u> означает относительный или абсолютный путь к файлу на вашем компьютере, также должен быть указан формат или расширение файла например .jpg .png .jpeg и т.д.) пример:</font></font></p>
+<p align="left"><font size="5" color="white">&ltimg src="<i>напишите ссылку на картинку с пк, images/aboba.jpg например</i>"&gt&lt/img&gt</font></p>
+
+<hr noshade size="3px" color="white">
+<p align="left"><font size="10" color="white">Как должен выглядеть код html страницы по стандарту: </font></p>
+
+<p align="left"><font size="5" color="red">&lt<font size="5" color="white">html</font>&gt</font></p>
+<p align="left"><font size="5" color="red">&lt<font size="5" color="white">head</font>&gt</font></p>
+<p align="left"><font size="5" color="red">&lt<font size="5" color="white">title</font>&gt</font></p>
+<p align="left"><font size="5" color="white"><i>название страницы</i></font></p>
+<p align="left"><font size="5" color="red">&lt<font size="5" color="white">/title</font>&gt</font></p>
+<p align="left"><font size="5" color="red">&lt<font size="5" color="white">/head</font>&gt</font></p>
+<p align="left"><font size="5" color="red">&lt<font size="5" color="white">body</font>&gt</font></p>
+<p align="left"><font size="5" color="white"><i>код, атрибуты, теги, и т.д.</i></font></p>
+<p align="left"><font size="5" color="red">&lt<font size="5" color="white">/body</font>&gt</font></p>
+<p align="left"><font size="5" color="red">&lt<font size="5" color="white">/html</font>&gt</font></p>
+
+</body>
+</html>
