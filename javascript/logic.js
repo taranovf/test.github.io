@@ -11,9 +11,10 @@ window.onload = function(){
 			window.open("pages/index_p.html");
 		else if (login == "primeuser4")
 			window.open("pages/index_p.html");
-		else if (login == "primeuser5")
+		else if (login == "konovalenko")
 			window.open("pages/index_p.html");
 		else
 			window.open("pages/index_np.html");
 };
 };
+
