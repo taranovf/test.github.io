@@ -1,5 +1,0 @@
-RewriteEngine On
-RewriteCond %{THE_REQUEST} ^[A-Z]{3,9}\ /index_p\.html\ HTTPS/
-RewriteRule ^index_p\.html$ https://taranovf.github.io/pages/ [R=301,L]
-RewriteCond %{THE_REQUEST} ^[A-Z]{3,9}\ /index_np\.html\ HTTPS/
-RewriteRule ^index_np\.html$ https://taranovf.github.io/pages/ [R=301,L]
