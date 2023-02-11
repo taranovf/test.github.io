@@ -1,0 +1,108 @@
+body {
+    background: linear-gradient(to right, #66ccff 0%, #ff99cc 100%);
+}
+
+.box {
+    width: 800px;
+    margin: 0 auto;
+    border-radius: 20px;
+    border: 1px solid;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    box-shadow: 1px 1px 3px gray;
+    margin-top: 30px;
+    margin-bottom: 30px;
+    resize: none;
+    box-sizing: border-box;
+    border: none;
+    padding: 20px;
+    flex-direction:column;
+    background-color: aliceblue;
+}
+
+h3{
+    letter-spacing: 1px;
+}
+
+.lavra{
+    width: 400px;
+    padding-bottom: 15px;
+}
+
+p{
+    position: relative;
+    text-align: center;
+    word-wrap: break-word;
+    width: 500px;
+    font-size: 20px;
+}
+
+.aboba{
+    padding-top: 15px;
+    margin: 0 auto;
+    font-weight: 500;
+}
+
+.mark_div{
+    padding-top:20px;
+    font-family:Arial, Helvetica, sans-serif;
+    font-size: 15px;
+}
+
+.mark_div input{
+    resize: none;
+    box-sizing: border-box;
+    border: 2px solid #ccc;
+    border-radius: 4px;
+    text-align: center;
+}
+
+.mark_div input{
+    width: 80px;
+}
+
+.mark_div .abb button{
+    border-radius: 10px;
+    font-size: 12px;
+    padding: 5px;
+    margin-left: 5px;
+    margin-bottom: 2px;
+}
+
+hr{
+    height: 1px;
+    width: 500px;
+    background-color: black;
+    opacity: 0.5;
+}
+
+.powered{
+    margin: 0 auto;
+    width: 680px;
+    text-align: center;
+}
+
+.bg{
+    padding: 5px;
+    background-color: sandybrown;
+    width: 200px;
+    text-align: center;
+    border-radius: 15px;
+}
+
+.bg2{
+    padding: 5px;
+    background-color: slateblue;
+    width: 200px;
+    text-align: center;
+    border-radius: 15px;
+}
+
+.bg_a{
+    padding: 5px;
+    background-color: seagreen;
+    width: 360px;
+    text-align: center;
+    border-radius: 15px;
+}
