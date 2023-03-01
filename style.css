@@ -118,7 +118,8 @@ hr{
 .columns{
     display: flex;
     flex-direction: row;
-    justify-content: center;
+    width: 700px;
+    justify-content: space-evenly;
 }
 
 /* MEDIA */
@@ -147,6 +148,8 @@ hr{
     }
     .columns{
         flex-direction: column;
+        width: 200px;
+        align-items: center;
     }
 }
 
