@@ -241,8 +241,8 @@ html {
 
 .links .box-footer{
     margin-top: 20px;
-    width: 800px;
-    height: 300px;
+    width: 720px;
+    height: 220px;
     background-color: #ebe9e9;
     border-radius: 20px;
     display: flex;
@@ -272,7 +272,7 @@ html {
 
 /* links */
 
-.links .box-footer .wrap .spot{
+.links .box-footer .wrap *{
     position: relative;
 }
 
@@ -288,10 +288,6 @@ html {
     background-size: contain;
 }
 
-.links .box-footer .wrap .apple{
-    position: relative;
-}
-
 .links .box-footer .wrap .apple::after{
     background-image: url("../img/apple.png");
     content: "";
@@ -304,10 +300,6 @@ html {
     background-size: contain;
 }
 
-.links .box-footer .wrap .yout{
-    position: relative;
-}
-
 .links .box-footer .wrap .yout::after{
     background-image: url("../img/youtube.png");
     content: "";
@@ -318,10 +310,6 @@ html {
     position: absolute;
     background-repeat: no-repeat;
     background-size: contain;
-}
-
-.links .box-footer .wrap .inst{
-    position: relative;
 }
 
 .links .box-footer .wrap .inst::after{
