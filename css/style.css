@@ -161,7 +161,7 @@ html {
 .albums .boxes{
     margin-top: 50px;
     display: flex;
-    justify-content: space-between;
+    justify-content: space-evenly;
     width: 100%;
 }
 
