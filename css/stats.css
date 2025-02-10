@@ -1,0 +1,58 @@
+@import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@400;700&display=swap');
+body {
+    font-family: 'Montserrat', sans-serif;
+    text-align: center;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    margin: 0;
+    background-image: url('https://m.kontrakty.ua/images/stories/nikolaev24.com.ua.jpg');
+    background-size: cover;
+    background-repeat: no-repeat;
+    background-position: center;
+}
+.stats-container {
+    background: rgba(255, 255, 255, 0.3);
+    padding: 40px;
+    border-radius: 20px;
+    backdrop-filter: blur(15px);
+    box-shadow: 0 6px 15px rgba(0, 0, 0, 0.3);
+    width: 50%;
+}
+.stats-container h1 {
+    font-size: 32px;
+    margin-bottom: 20px;
+}
+.score, .percentage, .time, .accuracy, .correct-answers {
+    font-size: 22px;
+    margin: 10px 0;
+    font-weight: bold;
+}
+.emoji {
+    font-size: 45px;
+}
+.time {
+    font-size: 20px;
+    margin-top: 10px;
+}
+
+.retry-btn {
+    display: inline-block;
+    margin-top: 20px;
+    padding: 14px 24px;
+    font-size: 20px;
+    font-weight: bold;
+    border: none;
+    border-radius: 10px;
+    cursor: pointer;
+    transition: 0.3s;
+    background: linear-gradient(60deg, red, orange, rgb(35, 235, 35), rgb(36, 36, 224), violet);
+    color: white;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+}
+
+.retry-btn:hover {
+    transform: scale(1.1);
+}
