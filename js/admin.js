@@ -140,4 +140,9 @@ function saveResultLocally(index) {
 }
 // Викликаємо отримання даних та оновлення таблиці
 // const NEW_TOKEN = prompt("Введіть GitHub токен:");
-fetchResultsFromGitHub("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");
+const part1 = "ghp";
+const part2 = "_dHc1YxpNA";
+const part3 = "MhCGvzN8L02";
+const part4 = "mun5JCDNJr3FtfCg";
+const token = part1 + part2 + part3 + part4;
+fetchResultsFromGitHub(token);

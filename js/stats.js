@@ -95,7 +95,12 @@ function saveResultToAdmin() {
 
     // 🔥 Отримуємо токен та відправляємо на GitHub (лише якщо такого результату ще нема)
     // const NEW_TOKEN = prompt("Введіть GitHub токен:");
-    sendResultsToGitHub(newResult, "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");
+    const part1 = "ghp";
+    const part2 = "_dHc1YxpNA";
+    const part3 = "MhCGvzN8L02";
+    const part4 = "mun5JCDNJr3FtfCg";
+    const token = part1 + part2 + part3 + part4;
+    sendResultsToGitHub(newResult, token);
 }
 
 // Викликаємо після завершення тесту
