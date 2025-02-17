@@ -3,33 +3,28 @@ async function fetchResultsFromGitHub(token) {
     const REPO_NAME = "test.github.io";
     const FILE_PATH = "quiz_results.json";
 
-    // 🚀 Додаємо унікальний timestamp до URL, щоб обійти кеш
-    const url = `https://api.github.com/repos/${GITHUB_USERNAME}/${REPO_NAME}/contents/${FILE_PATH}?_=${Date.now()}`;
+    const url = `https://api.github.com/repos/${GITHUB_USERNAME}/${REPO_NAME}/contents/${FILE_PATH}`;
 
     try {
         console.log("📥 Отримуємо дані з GitHub...");
 
         let response = await fetch(url, {
             headers: { Authorization: `Bearer ${token}` },
-            cache: "no-store" // 🔥 Заборона кешування
+            cache: "no-store"
         });
 
         if (!response.ok) throw new Error("❌ Помилка отримання файлу!");
 
         let data = await response.json();
-        
-        // ✅ Правильне декодування UTF-8 з Base64
         let fileContent = decodeURIComponent(escape(atob(data.content))); 
-
-        let results = JSON.parse(fileContent); // Парсимо JSON
+        let results = JSON.parse(fileContent);
 
         console.log("✅ Отримані результати:", results);
 
-        // Зберігаємо в localStorage
         localStorage.setItem("quizResults", JSON.stringify(results));
 
-        // Оновлюємо таблицю
-        loadResults(token);
+        loadResults(results, token);
+        updateStatistics(results);
 
     } catch (error) {
         console.error("❌ Не вдалося отримати дані з GitHub:", error);
@@ -37,9 +32,8 @@ async function fetchResultsFromGitHub(token) {
     }
 }
 
-// Функція для оновлення таблиці
-function loadResults(token) {
-    let results = JSON.parse(localStorage.getItem("quizResults")) || [];
+// 📌 Функція оновлення таблиці
+function loadResults(results, token) {
     let tableBody = document.getElementById("resultsTableBody");
 
     if (!tableBody) {
@@ -47,29 +41,77 @@ function loadResults(token) {
         return;
     }
 
+    results.sort((a, b) => b.score - a.score);
     tableBody.innerHTML = "";
 
     results.forEach((result, index) => {
+        let minutes = Math.floor(result.time / 60000);
+        let seconds = Math.floor((result.time % 60000) / 1000);
+
         let row = document.createElement("tr");
         row.innerHTML = `
             <td>${index + 1}</td>
             <td>${result.name || "Невідомий користувач"}</td>
-            <td>${result.score} / 12</td>
-            <td>${Math.floor(result.time / 60000)} хв ${Math.floor((result.time % 60000) / 1000)} сек</td>
+            <td>${Math.round(result.score)} / 12</td>
+            <td>${minutes} хв ${seconds} сек</td>
             <td>${result.date}</td>
             <td>
-                <button onclick="deleteResult(${index}, '${token}')">❌ Видалити</button>
-                <button onclick="saveResultLocally(${index})">💾 Зберегти</button>
+                <button class="delete-btn" data-name="${result.name}" data-score="${result.score}" data-time="${result.time}">❌ Видалити</button>
+                <button class="save-btn" data-index="${index}">💾 Зберегти</button>
             </td>
         `;
         tableBody.appendChild(row);
     });
 
+    // ✅ Виправлено неклікабельні кнопки після пошуку
+    document.querySelectorAll(".delete-btn").forEach(button => {
+        button.addEventListener("click", function () {
+            deleteResult(this.dataset.name, this.dataset.score, this.dataset.time, token);
+        });
+    });
+
+    document.querySelectorAll(".save-btn").forEach(button => {
+        button.addEventListener("click", function () {
+            saveResultLocally(this.dataset.index);
+        });
+    });
+
     console.log("📊 Таблиця оновлена!");
 }
 
-// Функція для видалення результату з GitHub
-async function deleteResult(index, token) {
+// 📌 Функція оновлення статистики
+function updateStatistics(results) {
+    if (!results.length) {
+        document.getElementById("averageScore").textContent = "Немає даних";
+        document.getElementById("averageTime").textContent = "Немає даних";
+        document.getElementById("bestPlayer").textContent = "Немає даних";
+        return;
+    }
+
+    let totalScore = results.reduce((sum, r) => sum + r.score / 1, 0);
+    let totalTime = results.reduce((sum, r) => sum + r.time / 1, 0);
+    let bestPlayer = results.reduce((best, r) => (r.score > best.score ? r : best), results[0]);
+
+    let averageScore = Math.round(totalScore / results.length); // 🔥 Округлення балів
+    let averageTimeMinutes = Math.floor((totalTime / results.length) / 60000);
+    let averageTimeSeconds = Math.floor(((totalTime / results.length) % 60000) / 1000);
+
+    document.getElementById("averageScore").textContent = `${averageScore} / 12`;
+    document.getElementById("averageTime").textContent = `${averageTimeMinutes} хв ${averageTimeSeconds} сек`;
+    document.getElementById("bestPlayer").textContent = `${bestPlayer.name} (${bestPlayer.score} / 12)`;
+}
+
+// 📌 Функція пошуку по імені
+function searchResults() {
+    let query = document.getElementById("searchInput").value.toLowerCase();
+    let results = JSON.parse(localStorage.getItem("quizResults")) || [];
+
+    let filteredResults = results.filter(r => r.name.toLowerCase().includes(query));
+    loadResults(filteredResults, localStorage.getItem("githubToken"));
+}
+
+// 📌 Функція видалення конкретного результату
+async function deleteResult(name, score, time, token) {
     const GITHUB_USERNAME = "taranovf";
     const REPO_NAME = "test.github.io";
     const FILE_PATH = "quiz_results.json";
@@ -77,18 +119,12 @@ async function deleteResult(index, token) {
 
     let results = JSON.parse(localStorage.getItem("quizResults")) || [];
 
-    if (index < 0 || index >= results.length) {
-        console.error("❌ Невірний індекс для видалення");
-        return;
-    }
-
-    // Видаляємо вибраний запис
-    results.splice(index, 1);
+    // 🔥 Видаляємо тільки обраний результат
+    let newResults = results.filter(r => !(r.name === name && r.score == score && r.time == time));
 
     try {
-        // 🔥 Отримуємо останній SHA перед оновленням
         let shaResponse = await fetch(url, {
-            headers: { Authorization: `token ${token}` }
+            headers: { Authorization: `Bearer ${token}` }
         });
 
         if (!shaResponse.ok) throw new Error("❌ Не вдалося отримати свіжий SHA!");
@@ -96,13 +132,13 @@ async function deleteResult(index, token) {
         let shaData = await shaResponse.json();
         let sha = shaData.sha;
 
-        let jsonString = JSON.stringify(results, null, 2);
+        let jsonString = JSON.stringify(newResults, null, 2);
         let encodedContent = btoa(unescape(encodeURIComponent(jsonString))); 
 
         let response = await fetch(url, {
             method: "PUT",
             headers: {
-                Authorization: `token ${token}`,
+                Authorization: `Bearer ${token}`,
                 "Content-Type": "application/json"
             },
             body: JSON.stringify({
@@ -114,8 +150,8 @@ async function deleteResult(index, token) {
 
         if (response.ok) {
             console.log("✅ Результат видалено!");
-            localStorage.setItem("quizResults", JSON.stringify(results));
-            loadResults(token); // Перезавантажуємо таблицю
+            localStorage.setItem("quizResults", JSON.stringify(newResults));
+            loadResults(newResults, token);
         } else {
             console.error("❌ Помилка видалення:", await response.json());
         }
@@ -124,7 +160,7 @@ async function deleteResult(index, token) {
     }
 }
 
-// Функція для збереження вибраного результату у файл
+// 📌 Функція збереження результату
 function saveResultLocally(index) {
     let results = JSON.parse(localStorage.getItem("quizResults")) || [];
     let result = results[index];
@@ -137,11 +173,12 @@ function saveResultLocally(index) {
     link.download = `quiz_result_${index + 1}.json`;
     link.click();
 }
-// Викликаємо отримання даних та оновлення таблиці
-// const NEW_TOKEN = prompt("Введіть GitHub токен:");
+
+// 📌 Запит токена та завантаження даних
 const part1 = "ghp";
 const part2 = "_dHc1YxpNA";
 const part3 = "MhCGvzN8L02";
 const part4 = "mun5JCDNJr3FtfCg";
-const token = part1 + part2 + part3 + part4;
-fetchResultsFromGitHub(token);
+const NEW_TOKEN  = part1 + part2 + part3 + part4;
+localStorage.setItem("githubToken", NEW_TOKEN);
+fetchResultsFromGitHub(NEW_TOKEN);

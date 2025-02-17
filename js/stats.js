@@ -7,7 +7,7 @@ let seconds = timeSec % 60;
 let totalQuestions = 12;
 let percentage = ((score / totalQuestions) * 100).toFixed(2);
 let accuracy = (score / totalQuestions * 100).toFixed(2);
-let emoji = score > 10 ? '😊' : score >= 7 ? '😐' : '😢';
+let emoji = score > 10 ? '😆' : score >= 7 ? '😉' : score >= 4 ? '😢' : '😞';
 
 document.getElementById("score").textContent = `${score} із ${totalQuestions}`;
 document.getElementById("percentage").textContent = percentage;
