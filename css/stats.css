@@ -13,29 +13,47 @@ body {
     background-position: center;
 }
 .stats-container {
+    color: rgb(31, 31, 31);
     background: rgba(255, 255, 255, 0.3);
     padding: 40px;
     border-radius: 20px;
     backdrop-filter: blur(15px);
-    box-shadow: 0 6px 15px rgba(0, 0, 0, 0.3);
+    box-shadow: 0 6px 15px rgba(0, 0, 0, 0.178);
     width: 50%;
 }
+
 .stats-container h1 {
     font-size: 32px;
     margin-bottom: 20px;
+    display: flex;
+    justify-content: center;
 }
+
+.statistics{
+    margin: 0 auto;
+    width: 500px;
+    display: flex;
+    align-items: flex-start;
+    flex-direction: column;
+}
+
 .score, .percentage, .time, .accuracy, .correct-answers {
     font-size: 22px;
     margin: 10px 0;
     font-weight: bold;
 }
-.emoji {
-    font-size: 45px;
+
+span{
+    color: rgb(47, 219, 56);
 }
-.time {
+
+.emoji {
+    font-size: 40px;
+}
+/* .time {
     font-size: 20px;
     margin-top: 10px;
-}
+} */
 
 .retry-btn {
     display: inline-block;

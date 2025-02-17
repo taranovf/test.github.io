@@ -7,11 +7,35 @@
     <link rel="stylesheet" href="css/style.css">
 </head>
 <body>
-    <div class="quiz-container" id="quiz-container">
+    <div class="name-input-container">
+        <label for="userName">Введіть ваше ім'я:</label>
+        <input type="text" id="userName" placeholder="Введіть ваше ім'я">
+        <button id="loginBtn">Почати</button>
+    </div>
+    <div class="quiz-container" id="quiz-container" style="display: none;">
         <h1>Вікторина про місто Миколаїв</h1>
         <p class="timer" id="timer">Час: 06:00</p>
         <div id="quiz"></div>
     </div>
+    <script>
+        document.getElementById("loginBtn").addEventListener("click", function() {
+            let userName = document.getElementById("userName").value.trim();
+            if (!userName) {
+                alert("Будь ласка, введіть ім'я!");
+                return;
+            }
+            
+            localStorage.setItem("userName", userName);
+            
+            // // Додаємо ім'я в загальний список результатів для admin.js
+            // let results = JSON.parse(localStorage.getItem("quizResults")) || [];
+            // results.push({ name: userName.toLocaleString() });
+            // localStorage.setItem("quizResults", JSON.stringify(results));
+
+            document.querySelector(".name-input-container").style.display = "none";
+            document.getElementById("quiz-container").style.display = "block";
+        });
+    </script>
     <script src="js/script.js"></script>
 </body>
 </html>

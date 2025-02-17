@@ -54,3 +54,30 @@ body {
 .incorrect {
     background: #dc3545 !important;
 }
+
+button {
+    margin-top: 20px;
+    padding: 10px 20px;
+    border: none;
+    background-color: #82acd8;
+    color: white;
+    cursor: pointer;
+    border-radius: 5px;
+    font-size: 16px;
+}
+
+label {
+    font-size: 20px;
+    font-weight: bold;
+}
+
+input[type=text] {
+    border: 2px solid rgb(48, 48, 48);
+    border-radius: 5px;
+    background-color: white;
+    background-image: url('searchicon.png');
+    background-position: 10px 10px;
+    background-repeat: no-repeat;
+    padding: 5px 10px 10px 20px;
+    
+  }
