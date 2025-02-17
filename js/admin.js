@@ -98,7 +98,7 @@ function updateStatistics(results) {
 
     document.getElementById("averageScore").textContent = `${averageScore} / 12`;
     document.getElementById("averageTime").textContent = `${averageTimeMinutes} хв ${averageTimeSeconds} сек`;
-    document.getElementById("bestPlayer").textContent = `${bestPlayer.name} (${bestPlayer.score} / 12)`;
+    document.getElementById("bestPlayer").textContent = `${bestPlayer.name}`;
 }
 
 // 📌 Функція пошуку по імені
