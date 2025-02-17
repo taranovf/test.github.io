@@ -24,14 +24,7 @@
                 alert("Будь ласка, введіть ім'я!");
                 return;
             }
-            
             localStorage.setItem("userName", userName);
-            
-            // // Додаємо ім'я в загальний список результатів для admin.js
-            // let results = JSON.parse(localStorage.getItem("quizResults")) || [];
-            // results.push({ name: userName.toLocaleString() });
-            // localStorage.setItem("quizResults", JSON.stringify(results));
-
             document.querySelector(".name-input-container").style.display = "none";
             document.getElementById("quiz-container").style.display = "block";
         });

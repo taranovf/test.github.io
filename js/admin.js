@@ -1,68 +1,143 @@
-// admin.js
+async function fetchResultsFromGitHub(token) {
+    const GITHUB_USERNAME = "taranovf";
+    const REPO_NAME = "test.github.io";
+    const FILE_PATH = "quiz_results.json";
 
-document.addEventListener("DOMContentLoaded", function() {
-    loadResults();
-});
+    const url = `https://api.github.com/repos/${GITHUB_USERNAME}/${REPO_NAME}/contents/${FILE_PATH}`;
 
-function saveResult(score, time, name) {
-    let results = JSON.parse(localStorage.getItem("quizResults")) || [];
-    
-    // Якщо результат вже був збережений, виходимо
-    if (localStorage.getItem("resultSaved")) return;
-    
-    // Перевіряємо, чи існує такий же запис у localStorage
-    let exists = results.some(result => 
-        result.name === name && 
-        result.score === score && 
-        result.time === time
-    );
-    
-    if (exists) return; // Якщо результат вже є, не додаємо його повторно
-    
-    results.push({ name, score, time, date: new Date().toLocaleString() });
-    localStorage.setItem("quizResults", JSON.stringify(results));
-    localStorage.setItem("resultSaved", "true"); // Позначаємо, що результат збережено
+    try {
+        console.log("📥 Отримуємо дані з GitHub...");
+
+        let response = await fetch(url, {
+            headers: { Authorization: `token ${token}` }
+        });
+
+        if (!response.ok) throw new Error("❌ Помилка отримання файлу!");
+
+        let data = await response.json();
+        
+        // ✅ Правильне декодування UTF-8 з Base64
+        let fileContent = decodeURIComponent(escape(atob(data.content))); 
+
+        let results = JSON.parse(fileContent); // Парсимо JSON
+
+        console.log("✅ Отримані результати:", results);
+
+        // Зберігаємо в localStorage
+        localStorage.setItem("quizResults", JSON.stringify(results));
+
+        // Зберігаємо останній SHA файлу
+        localStorage.setItem("quizResultsSHA", data.sha);
+
+        // Оновлюємо таблицю
+        loadResults(token);
+
+    } catch (error) {
+        console.error("❌ Не вдалося отримати дані з GitHub:", error);
+        localStorage.setItem("quizResults", JSON.stringify([]));
+    }
 }
 
-function loadResults() {
+// Функція для оновлення таблиці
+function loadResults(token) {
     let results = JSON.parse(localStorage.getItem("quizResults")) || [];
     let tableBody = document.getElementById("resultsTableBody");
-    if (!tableBody) return;
+
+    if (!tableBody) {
+        console.error("❌ Таблиця не знайдена!");
+        return;
+    }
+
     tableBody.innerHTML = "";
-    
+
     results.forEach((result, index) => {
         let row = document.createElement("tr");
         row.innerHTML = `
             <td>${index + 1}</td>
-            <td>${result.name || 'Невідомий користувач'}</td>
+            <td>${result.name || "Невідомий користувач"}</td>
             <td>${result.score} / 12</td>
             <td>${Math.floor(result.time / 60000)} хв ${Math.floor((result.time % 60000) / 1000)} сек</td>
             <td>${result.date}</td>
             <td>
-                <button class="delete" onclick="deleteResult(${index})">Видалити</button>
-                <button class="save" onclick="saveResultLocally(${index})">Зберегти</button>
+                <button onclick="deleteResult(${index}, '${token}')">❌ Видалити</button>
+                <button onclick="saveResultLocally(${index})">💾 Зберегти</button>
             </td>
         `;
         tableBody.appendChild(row);
     });
+
+    console.log("📊 Таблиця оновлена!");
 }
 
-function deleteResult(index) {
+// Функція для видалення результату з GitHub
+async function deleteResult(index, token) {
+    const GITHUB_USERNAME = "taranovf";
+    const REPO_NAME = "test.github.io";
+    const FILE_PATH = "quiz_results.json";
+    const url = `https://api.github.com/repos/${GITHUB_USERNAME}/${REPO_NAME}/contents/${FILE_PATH}`;
+
     let results = JSON.parse(localStorage.getItem("quizResults")) || [];
+
+    if (index < 0 || index >= results.length) {
+        console.error("❌ Невірний індекс для видалення");
+        return;
+    }
+
+    // Видаляємо вибраний запис
     results.splice(index, 1);
-    localStorage.setItem("quizResults", JSON.stringify(results));
-    localStorage.removeItem("resultSaved"); // Дозволяємо нову відправку після видалення
-    loadResults();
+
+    try {
+        // 🔥 Отримуємо останній SHA перед оновленням
+        let shaResponse = await fetch(url, {
+            headers: { Authorization: `token ${token}` }
+        });
+
+        if (!shaResponse.ok) throw new Error("❌ Не вдалося отримати свіжий SHA!");
+
+        let shaData = await shaResponse.json();
+        let sha = shaData.sha;
+
+        let jsonString = JSON.stringify(results, null, 2);
+        let encodedContent = btoa(unescape(encodeURIComponent(jsonString))); 
+
+        let response = await fetch(url, {
+            method: "PUT",
+            headers: {
+                Authorization: `token ${token}`,
+                "Content-Type": "application/json"
+            },
+            body: JSON.stringify({
+                message: "🗑 Видалено запис з результатів",
+                content: encodedContent,
+                sha: sha
+            })
+        });
+
+        if (response.ok) {
+            console.log("✅ Результат видалено!");
+            localStorage.setItem("quizResults", JSON.stringify(results));
+            loadResults(token); // Перезавантажуємо таблицю
+        } else {
+            console.error("❌ Помилка видалення:", await response.json());
+        }
+    } catch (error) {
+        console.error("❌ Не вдалося видалити запис:", error);
+    }
 }
 
+// Функція для збереження вибраного результату у файл
 function saveResultLocally(index) {
     let results = JSON.parse(localStorage.getItem("quizResults")) || [];
     let result = results[index];
+
     if (!result) return;
-    
+
     let blob = new Blob([JSON.stringify(result, null, 2)], { type: "application/json" });
     let link = document.createElement("a");
     link.href = URL.createObjectURL(blob);
     link.download = `quiz_result_${index + 1}.json`;
     link.click();
 }
+// Викликаємо отримання даних та оновлення таблиці
+// const NEW_TOKEN = prompt("Введіть GitHub токен:");
+fetchResultsFromGitHub("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");

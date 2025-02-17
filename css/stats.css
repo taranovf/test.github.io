@@ -7,7 +7,8 @@ body {
     align-items: center;
     height: 100vh;
     margin: 0;
-    background-image: url('https://m.kontrakty.ua/images/stories/nikolaev24.com.ua.jpg');
+    background-color: #e96670;
+    /* background-image: url('https://m.kontrakty.ua/images/stories/nikolaev24.com.ua.jpg'); */
     background-size: cover;
     background-repeat: no-repeat;
     background-position: center;
@@ -19,7 +20,7 @@ body {
     border-radius: 20px;
     backdrop-filter: blur(15px);
     box-shadow: 0 6px 15px rgba(0, 0, 0, 0.178);
-    width: 50%;
+    width: 30%;
 }
 
 .stats-container h1 {
@@ -44,7 +45,7 @@ body {
 }
 
 span{
-    color: rgb(47, 219, 56);
+    color: rgb(179, 62, 62);
 }
 
 .emoji {
