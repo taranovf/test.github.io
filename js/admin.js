@@ -3,7 +3,8 @@ async function fetchResultsFromGitHub(token) {
     const REPO_NAME = "test.github.io";
     const FILE_PATH = "quiz_results.json";
 
-    const url = `https://api.github.com/repos/${GITHUB_USERNAME}/${REPO_NAME}/contents/${FILE_PATH}`;
+    // 🚀 Додаємо унікальний timestamp до URL, щоб обійти кеш
+    const url = `https://api.github.com/repos/${GITHUB_USERNAME}/${REPO_NAME}/contents/${FILE_PATH}?_=${Date.now()}`;
 
     try {
         console.log("📥 Отримуємо дані з GitHub...");
