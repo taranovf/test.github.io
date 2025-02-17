@@ -140,4 +140,4 @@ function saveResultLocally(index) {
 }
 // Викликаємо отримання даних та оновлення таблиці
 // const NEW_TOKEN = prompt("Введіть GitHub токен:");
-fetchResultsFromGitHub("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");
+fetchResultsFromGitHub("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");
