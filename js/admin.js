@@ -9,7 +9,8 @@ async function fetchResultsFromGitHub(token) {
         console.log("📥 Отримуємо дані з GitHub...");
 
         let response = await fetch(url, {
-            headers: { Authorization: `token ${token}` }
+            headers: { Authorization: `Bearer ${token}` },
+            cache: "no-store" // 🔥 Заборона кешування
         });
 
         if (!response.ok) throw new Error("❌ Помилка отримання файлу!");
@@ -25,9 +26,6 @@ async function fetchResultsFromGitHub(token) {
 
         // Зберігаємо в localStorage
         localStorage.setItem("quizResults", JSON.stringify(results));
-
-        // Зберігаємо останній SHA файлу
-        localStorage.setItem("quizResultsSHA", data.sha);
 
         // Оновлюємо таблицю
         loadResults(token);
