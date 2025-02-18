@@ -70,6 +70,20 @@ button {
     font-size: 16px;
 }
 
+/* 📌 Ефект hover тільки для миші */
+@media (hover: hover) {
+    .button:hover {
+        background-color: #45a049;
+        transform: scale(1.05);
+    }
+}
+
+/* 📌 Прибираємо hover після натискання */
+.button:active {
+    background-color: #3e8e41;
+    transform: scale(1);
+}
+
 .name-input-container{
     display: flex;
     flex-direction: column;
