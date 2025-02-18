@@ -87,7 +87,8 @@ function loadResults(results) {
 // 📌 Функція для сортування таблиці----------------------------------------------------------------------------------
 
 function sortTable(columnIndex) {
-    if (columnIndex === document.querySelectorAll("#resultsTable th").length - 1) {
+    // ❌ Забороняємо сортування індексів та кнопок
+    if (columnIndex === 0 || columnIndex === document.querySelectorAll("#resultsTable th").length - 1) {
         return;
     }
 
