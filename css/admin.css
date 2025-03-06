@@ -1,0 +1,268 @@
+body {
+    font-family: Arial, sans-serif;
+    background-color: #f4f4f4;
+    color: #333;
+    margin: 0;
+    padding: 20px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    transition: all 0.3s ease-in-out;
+}
+
+.top{
+    display: flex;
+    justify-content: space-between;
+    justify-items: center;
+    width: 400px;
+}
+
+body.dark-mode {
+    background-color: #181818;
+    color: #ddd;
+}
+
+table th, table td {
+    padding: 12px;
+    text-align: center;
+}
+
+table th {
+    background-color: #67696b;
+    color: white;
+}
+
+tr:nth-child(even) {
+    background-color: #f9f9f9;
+}
+
+tr:hover {
+    background-color: #f1f1f1;
+}
+
+button {
+    padding: 10px 20px;
+    border: none;
+    background-color: #82acd8;
+    color: white;
+    cursor: pointer;
+    border-radius: 5px;
+    font-size: 16px;
+}
+
+button:hover {
+    opacity: .6;
+}
+
+#resultsTable {
+    width: 100%;
+    border-collapse: collapse;
+    text-align: left;
+    font-size: 16px;
+    width: 80%;
+    background: #fff;
+    box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.1);
+    border-radius: 20px;
+    overflow: hidden;
+}
+
+#resultsTable th {
+    background-color: #4CAF50;
+    color: white;
+    padding: 12px;
+    text-align: center;
+    font-size: 18px;
+    font-weight: bold;
+    cursor: pointer;
+}
+
+#resultsTable td:first-child {
+    font-weight: bold;
+    color: #333;
+}
+
+#resultsTable td:nth-child(2) {
+    font-weight: bold;
+    color: #be1f33;
+}
+
+#resultsTable td:nth-child(3) {
+    font-weight: bold;
+    color: #6e9a44;
+}
+
+#resultsTable td:nth-child(4) {
+    font-weight: bold;
+    color: #3d964c;
+}
+
+#resultsTable td:nth-child(5) {
+    font-weight: bold;
+    color: #bad072;
+}
+
+#resultsTable td:last-child {
+    display: flex;
+    justify-content: center; 
+    align-items: center; 
+    gap: 5px; 
+}
+
+#resultsTable button {
+    font-size: 14px;
+    border: none;
+    cursor: pointer;
+    border-radius: 5px;
+}
+
+#resultsTable th, #resultsTable td {
+    padding: 12px;
+    text-align: center;
+    font-size: 16px;
+}
+
+#resultsTable tr:nth-child(even) {
+    background-color: #f2f2f2;
+}
+
+#resultsTable th {
+    background-color: #3f3f3f;
+    color: white;
+    cursor: pointer;
+}
+
+#resultsTable th:hover {
+    background-color: #333333;
+}
+
+.sorted-asc::after {
+    content: " 🔼";
+}
+
+.sorted-desc::after {
+    content: " 🔽";
+}
+
+input[type=text]:focus {
+    border-color: #424242;
+    box-shadow: 0 0 10px rgba(43, 43, 43, 0.5);
+}
+
+input[type=text] {
+    border: 4px solid #424242;
+    border-radius: 5px;
+    background-color: white;
+    background-image: url('searchicon.png');
+    background-position: 10px 10px;
+    background-repeat: no-repeat;
+    padding: 10px 15px 10px 40px;
+    font-size: 16px;
+    color: #333;
+    outline: none;
+    transition: all 0.3s ease-in-out;
+    opacity: .7;
+}
+
+.stats-container{
+    font-size: 18px;
+}
+
+.stats-container span{
+    font-weight: bold;
+}
+
+#resultsTable button:hover {
+    opacity: 0.8;
+}
+
+.theme-toggle {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    font-size: 18px;
+}
+
+.switch {
+    position: relative;
+    display: inline-block;
+    width: 40px;
+    height: 20px;
+}
+
+.switch input {
+    opacity: 0;
+    width: 0;
+    height: 0;
+}
+
+.slider {
+    position: absolute;
+    cursor: pointer;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background-color: #ccc;
+    transition: .4s;
+    border-radius: 20px;
+}
+
+.slider:before {
+    position: absolute;
+    content: "";
+    height: 14px;
+    width: 14px;
+    left: 3px;
+    bottom: 3px;
+    background-color: white;
+    transition: .4s;
+    border-radius: 50%;
+}
+
+input:checked + .slider {
+    background-color: #4CAF50;
+}
+
+input:checked + .slider:before {
+    transform: translateX(20px);
+}
+
+body.dark-mode #resultsTable {
+    background: #292929;
+    color: #ddd;
+}
+
+body.dark-mode #resultsTable th {
+    background-color: #2e2e2e;
+}
+
+body.dark-mode #resultsTable td:first-child {
+    color: white;
+}
+
+body.dark-mode #resultsTable tr:nth-child(even) {
+    background-color: #2b2b2b;
+}
+
+body.dark-mode #resultsTable tr:hover {
+    background-color: #353535;
+}
+
+body.dark-mode button {
+    background-color: #444;
+    color: white;
+}
+
+body.dark-mode button:hover {
+    background-color: #555;
+}
+
+body.dark-mode input[type=text] {
+    background-color: #333;
+    color: white;
+    border: 2px solid #555;
+}
+
+body.dark-mode #resultsTable th:hover {
+    background-color: #292828;
+}

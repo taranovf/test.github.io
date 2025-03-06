@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="uk">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Вікторина про Миколаїв</title>
+    <link rel="stylesheet" href="css/style.css">
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;700&display=swap" rel="stylesheet">
+</head>
+<body>
+    <div class="intro-container quiz-container">
+        <h2>Ласкаво просимо до вікторини про місто Миколаїв!</h2>
+        <p>Миколаїв - це місто з багатою історією, мальовничими місцями та важливими подіями. Ця вікторина допоможе вам перевірити свої знання про це чудове місто.</p>
+        <p>Відповідайте на запитання та дізнавайтеся цікаві факти про Миколаїв!</p>
+        <h3>Як пройти вікторину?</h3>
+        <ul>
+            <li>Введіть своє ім'я у поле нижче.</li>
+            <li>Натисніть кнопку "Почати".</li>
+            <li>Відповідайте на запитання у встановлений час.</li>
+            <li>Отримайте свій результат та поділіться з друзями!</li>
+        </ul>
+        <p><strong>Готові? Почнемо!</strong></p>
+    </div>
+    <div class="name-input-container quiz-container">
+        <label for="userName">Введіть ваше ім'я:</label>
+        <input type="text" id="userName" placeholder="Введіть ваше ім'я">
+        <button id="loginBtn">Почати</button>
+    </div>
+    <div class="quiz-container" id="quiz-container" style="display: none;">
+        <h1>Вікторина про місто Миколаїв</h1>
+        <p class="timer" id="timer">Час: 06:00</p>
+        <div id="quiz"></div>
+    </div>
+    <script>
+        document.getElementById("loginBtn").addEventListener("click", function() {
+            let userName = document.getElementById("userName").value.trim();
+            if (!userName) {
+                alert("Будь ласка, введіть ім'я!");
+                return;
+            }
+            localStorage.setItem("userName", userName);
+            document.querySelector(".intro-container").style.display = "none";
+            document.querySelector(".name-input-container").style.display = "none";
+            document.getElementById("quiz-container").style.display = "block";
+        });
+    </script>
+    <script src="js/script.js"></script>
+    <script src="js/index.js"></script>
+</body>
+</html>

@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="uk">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Адмінська панель</title>
+    <link rel="stylesheet" href="css/admin.css">
+</head>
+<body>
+    <div class="top">
+        <h1>Результати тестів</h1>
+        <div class="theme-toggle">
+            <label class="switch">
+                <input type="checkbox" id="themeSwitcher">
+                <span class="slider"></span>
+            </label>
+            <span>🌙</span>
+        </div>
+    </div>
+    
+    <div class="search-container">
+        <input type="text" id="searchInput" placeholder="🔍 Пошук за ім'ям" onkeyup="searchResults()">
+    </div> 
+
+    <div class="stats-container">
+        <h3>📊 Загальна статистика</h3>
+        <p>📌 Середній бал: <span id="averageScore">...</span></p>
+        <p>⏳ Середній час проходження: <span id="averageTime">...</span></p>
+        <p>🏆 Найкращий гравець: <span id="bestPlayer">...</span></p>
+    </div>
+
+    <table id="resultsTable">
+        <thead>
+            <tr>
+                <th>№</th>
+                <th>Ім'я</th>
+                <th>Результат</th>
+                <th>Час</th>
+                <th>Дата</th>
+                <th>Дії</th>
+            </tr>
+        </thead>
+        <tbody id="resultsTableBody">
+        </tbody>
+    </table>   
+
+    <script src="js/admin.js"></script>
+    <script src="js/theme.js"></script> 
+</body>
+</html>

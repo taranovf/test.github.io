@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html lang="uk">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Статистика</title>
+    <link rel="stylesheet" href="css/stats.css">
+</head>
+<body>
+    <div class="stats-container">
+        <h1>Результати тесту</h1>
+        <div class="statistics">
+            <p class="score">Ваш рахунок: <span id="score"></span> <span class="emoji"></span></p>
+            <p class="percentage">Відсоток правильних відповідей: <span id="percentage"></span>%</p>
+            <p class="accuracy">Точність відповідей: <span id="accuracy"></span>%</p>
+            <p class="correct-answers">Правильні відповіді: <span id="correctAnswers"></span> / 12</p>
+            <p class="time">Час проходження: <span id="time"></span></p>
+        </div>
+        <button class="retry-btn" onclick="restartQuiz()">Пройти ще раз</button>
+    </div>
+    <script src="js/stats.js"></script>
+</body>
+</html>
